@@ -48,9 +48,6 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Zerum.Controls, Version=1.0.5508.38302, Culture=neutral, PublicKeyToken=null">
-      <HintPath>bin\Debug\Zerum.Controls.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs" />
@@ -68,6 +65,11 @@
       <Project>{FBF918C6-07D9-4124-8440-B45E44AED576}</Project>
       <Name>Zerum.Controls</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

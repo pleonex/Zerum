@@ -1,15 +1,29 @@
-﻿/*
- * Created by SharpDevelop.
- * User: WindowsUser
- * Date: 30/01/2015
- * Time: 20:38
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainForm.cs" company="none">
+// Copyright (C) 2015
+//
+//   This program is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by 
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   This program is distributed in the hope that it will be useful, 
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details. 
+//
+//   You should have received a copy of the GNU General Public License
+//   along with this program.  If not, see "http://www.gnu.org/licenses/". 
+// </copyright>
+// <author>pleoNeX</author>
+// <email>benito356@gmail.com</email>
+// <date>30/01/2015</date>
+//-----------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Zerum.Controls;
 
 namespace Zerum
 {
@@ -25,9 +39,9 @@ namespace Zerum
 			//
 			InitializeComponent();
 			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
+			var label = new NftrLabel("font_b11.NFTR");
+			label.Text = "Hello World";
+			this.Controls.Add(label);
 		}
 	}
 }

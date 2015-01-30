@@ -1,11 +1,24 @@
-﻿/*
- * Created by SharpDevelop.
- * User: WindowsUser
- * Date: 30/01/2015
- * Time: 20:38
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
+﻿//-----------------------------------------------------------------------
+// <copyright file="MainForm.Designer.cs" company="none">
+// Copyright (C) 2015
+//
+//   This program is free software: you can redistribute it and/or modify
+//   it under the terms of the GNU General Public License as published by 
+//   the Free Software Foundation, either version 3 of the License, or
+//   (at your option) any later version.
+//
+//   This program is distributed in the hope that it will be useful, 
+//   but WITHOUT ANY WARRANTY; without even the implied warranty of
+//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//   GNU General Public License for more details. 
+//
+//   You should have received a copy of the GNU General Public License
+//   along with this program.  If not, see "http://www.gnu.org/licenses/". 
+// </copyright>
+// <author>pleoNeX</author>
+// <email>benito356@gmail.com</email>
+// <date>30/01/2015</date>
+//-----------------------------------------------------------------------
 namespace Zerum
 {
 	partial class MainForm
@@ -14,6 +27,7 @@ namespace Zerum
 		/// Designer variable used to keep track of non-visual components.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
+		private System.Windows.Forms.Button button1;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -36,12 +50,28 @@ namespace Zerum
 		/// </summary>
 		private void InitializeComponent()
 		{
-			// 
-			// MainForm
-			// 
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Text = "Zerum";
-			this.Name = "MainForm";
+		    this.button1 = new System.Windows.Forms.Button();
+		    this.SuspendLayout();
+		    // 
+		    // button1
+		    // 
+		    this.button1.Location = new System.Drawing.Point(417, 12);
+		    this.button1.Name = "button1";
+		    this.button1.Size = new System.Drawing.Size(75, 23);
+		    this.button1.TabIndex = 0;
+		    this.button1.Text = "button1";
+		    this.button1.UseVisualStyleBackColor = true;
+		    // 
+		    // MainForm
+		    // 
+		    this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+		    this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+		    this.ClientSize = new System.Drawing.Size(504, 373);
+		    this.Controls.Add(this.button1);
+		    this.Name = "MainForm";
+		    this.Text = "Zerum";
+		    this.ResumeLayout(false);
+
 		}
 	}
 }

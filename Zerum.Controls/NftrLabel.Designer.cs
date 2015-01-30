@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="${FILENAME}.cs" company="none">
+// <copyright file="NftrLabel.Designer.cs" company="none">
 // Copyright (C) 2015
 //
 //   This program is free software: you can redistribute it and/or modify
