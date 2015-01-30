@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{850B286C-03D3-494E-9398-90284D1FAD52}</ProjectGuid>
+    <ProjectGuid>{FBF918C6-07D9-4124-8440-B45E44AED576}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>Zerum</RootNamespace>
-    <AssemblyName>Zerum</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Zerum.Controls</RootNamespace>
+    <AssemblyName>Zerum.Controls</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <OutputPath>bin\Debug\</OutputPath>
@@ -48,25 +48,18 @@
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Zerum.Controls, Version=1.0.5508.38302, Culture=neutral, PublicKeyToken=null">
-      <HintPath>bin\Debug\Zerum.Controls.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainForm.cs" />
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NftrLabel.cs" />
+    <Compile Include="NftrLabel.Designer.cs">
+      <DependentUpon>NftrLabel.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Zerum.Controls\Zerum.Controls.csproj">
-      <Project>{FBF918C6-07D9-4124-8440-B45E44AED576}</Project>
-      <Name>Zerum.Controls</Name>
+    <ProjectReference Include="..\NerdFontTerminatoR\NerdFontTerminatoR\NerdFontTerminatoR.csproj">
+      <Project>{67AB462C-59F1-48DB-A884-A022D9AF809B}</Project>
+      <Name>NerdFontTerminatoR</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerum", "Zerum\Zerum.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdFontTerminatoR", "NerdFontTerminatoR\NerdFontTerminatoR\NerdFontTerminatoR.csproj", "{67AB462C-59F1-48DB-A884-A022D9AF809B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerum.Controls", "Zerum.Controls\Zerum.Controls.csproj", "{FBF918C6-07D9-4124-8440-B45E44AED576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
 		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
