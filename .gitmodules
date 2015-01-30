@@ -1,0 +1,3 @@
+[submodule "NerdFontTerminatoR"]
+	path = NerdFontTerminatoR
+	url = git@github.com:pleonex/NerdFontTerminatoR.git
