@@ -24,6 +24,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Nftr;
+using Nftr.Structure;
 
 namespace Zerum.Controls
 {
@@ -43,7 +44,7 @@ namespace Zerum.Controls
             InitializeComponent();
             
             font = new NftrFont(fontpath);
-            glyphHeight = ((Nftr.Structure.Finf)font.Blocks["Finf", 0]).GlyphHeight;
+			glyphHeight = font.Blocks.GetByType<Finf>(0).GlyphHeight;
             
             Text = string.Empty;
         }
