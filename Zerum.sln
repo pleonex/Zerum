@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 5.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerum", "Zerum\Zerum.csproj", "{850B286C-03D3-494E-9398-90284D1FAD52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdFontTerminatoR", "NerdFontTerminatoR\NerdFontTerminatoR\NerdFontTerminatoR.csproj", "{67AB462C-59F1-48DB-A884-A022D9AF809B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{850B286C-03D3-494E-9398-90284D1FAD52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850B286C-03D3-494E-9398-90284D1FAD52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850B286C-03D3-494E-9398-90284D1FAD52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850B286C-03D3-494E-9398-90284D1FAD52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67AB462C-59F1-48DB-A884-A022D9AF809B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
