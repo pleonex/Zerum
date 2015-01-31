@@ -37,10 +37,13 @@ namespace Zerum
 
 		public MainForm()
 		{
-			InitializeComponent();
+			this.AutoScaleMode = AutoScaleMode.Font;
+			this.AutoSize = true;
+			this.Text = "Zerum ~~ by pleonex ~~";
 
 			manager   = ScenesManager.Instance;
 			sceneView = new SceneView(manager.GetScene("Item description"));
+			sceneView.Location = new Point(5, 0);
 			Controls.Add(sceneView);
 		}
 	}
