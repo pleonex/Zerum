@@ -1,3 +1,6 @@
 [submodule "NerdFontTerminatoR"]
 	path = NerdFontTerminatoR
 	url = git@github.com:pleonex/NerdFontTerminatoR.git
+[submodule "libgame"]
+	path = libgame
+	url = git@github.com:pleonex/libgame.git
