@@ -24,6 +24,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Zerum.Controls;
+using Zerum.View;
 
 namespace Zerum
 {
@@ -35,6 +36,7 @@ namespace Zerum
 		public MainForm()
 		{
 			InitializeComponent();
+			Controls.Add(new ScenePanel(ScenesManager.Instance.GetScene("Item description")));
 		}
 	}
 }
