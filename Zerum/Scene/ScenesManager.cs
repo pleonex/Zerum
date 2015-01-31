@@ -19,11 +19,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Reflection;
-using System.IO;
-using YAXLib;
-using System.Xml.Linq;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
+using System.Xml.Linq;
+using YAXLib;
 
 namespace Zerum
 {
@@ -42,6 +42,25 @@ namespace Zerum
 
 		public static ScenesManager Instance {
 			get { return instance; }
+		}
+
+		public string[] GetScenesName()
+		{
+			var names = new string[scenes.Count];
+			scenes.Keys.CopyTo(names, 0);
+			return names;
+		}
+
+		public Scene GetScene(string name)
+		{
+			if (!scenes.ContainsKey(name))
+				return null;
+
+			return scenes[name];
+		}
+
+		public Scene this[string name] {
+			get { return GetScene(name); }
 		}
 
 		private void Read()
