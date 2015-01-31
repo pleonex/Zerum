@@ -82,7 +82,7 @@ namespace Zerum.Info
 			scene.Controls = new List<SceneElement>();
 
 			foreach (var controlXml in sceneXml.Element("Controls").Elements()) {
-				var controlType = Type.GetType("Zerum.View." + controlXml.Name.LocalName);
+				var controlType = Type.GetType("Zerum.Info." + controlXml.Name.LocalName);
 				var deserializer = new YAXSerializer(controlType);
 
 				var control = (SceneElement)deserializer.Deserialize(controlXml);

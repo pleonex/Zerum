@@ -32,10 +32,16 @@ namespace Zerum
 	/// </summary>
 	public partial class MainForm : Form
 	{
+		ScenesManager manager;
+		SceneView sceneView;
+
 		public MainForm()
 		{
 			InitializeComponent();
-			Controls.Add(new SceneView(ScenesManager.Instance.GetScene("Item description")));
+
+			manager   = ScenesManager.Instance;
+			sceneView = new SceneView(manager.GetScene("Item description"));
+			Controls.Add(sceneView);
 		}
 	}
 }
