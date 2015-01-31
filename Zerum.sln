@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerum", "Zerum\Zerum.csproj", "{850B286C-03D3-494E-9398-90284D1FAD52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zerum.Controls", "Zerum.Controls\Zerum.Controls.csproj", "{FBF918C6-07D9-4124-8440-B45E44AED576}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdFontTerminatoR", "NerdFontTerminatoR\NerdFontTerminatoR\NerdFontTerminatoR.csproj", "{67AB462C-59F1-48DB-A884-A022D9AF809B}"
 EndProject
 Global
@@ -31,13 +29,5 @@ Global
 		{850B286C-03D3-494E-9398-90284D1FAD52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{850B286C-03D3-494E-9398-90284D1FAD52}.Release|x86.ActiveCfg = Release|Any CPU
 		{850B286C-03D3-494E-9398-90284D1FAD52}.Release|x86.Build.0 = Release|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Debug|x86.Build.0 = Debug|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|x86.ActiveCfg = Release|Any CPU
-		{FBF918C6-07D9-4124-8440-B45E44AED576}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
