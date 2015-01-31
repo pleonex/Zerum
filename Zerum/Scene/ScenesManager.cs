@@ -25,12 +25,12 @@ using System.Reflection;
 using System.Xml.Linq;
 using YAXLib;
 
-namespace Zerum
+namespace Zerum.View
 {
 	public class ScenesManager
 	{
 		static readonly ScenesManager instance = new ScenesManager();
-		readonly string Filename = "Scenes.xml";
+		readonly string Filename = "scenes.xml";
 		readonly string Filepath;
 		Dictionary<string, Scene> scenes;
 
@@ -38,6 +38,7 @@ namespace Zerum
 		{
 			string execPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 			Filepath = Path.Combine(execPath, Filename);
+			Read();
 		}
 
 		public static ScenesManager Instance {
@@ -69,24 +70,26 @@ namespace Zerum
 			scenes = new Dictionary<string, Scene>();
 
 			foreach (var sceneXml in document.Root.Elements()) {
-				var sceneType = Type.GetType(sceneXml.Name.LocalName);
-				var deserializer = new YAXSerializer(sceneType);
-
-				var scene = (Scene)deserializer.Deserialize(sceneXml);
+				var scene = ReadScene(sceneXml);
 				scenes.Add(scene.Name, scene);
 			}
 		}
 
-		private void Write()
+		private Scene ReadScene(XElement sceneXml)
 		{
-			var document = new XDocument();
-			var root = new XElement("ScenesManager");
-			document.Add(root);
+			Scene scene = new Scene();
+			scene.Name = sceneXml.Element("Name").Value;
+			scene.Controls = new List<SceneControl>();
 
-			foreach (var scene in scenes.Values) {
-				var serializer = new YAXSerializer(scene.GetType());
-				root.Add(XElement.Parse(serializer.Serialize(scene)));
+			foreach (var controlXml in sceneXml.Element("Controls").Elements()) {
+				var controlType = Type.GetType("Zerum.View." + controlXml.Name.LocalName);
+				var deserializer = new YAXSerializer(controlType);
+
+				var control = (SceneControl)deserializer.Deserialize(controlXml);
+				scene.Controls.Add(control);
 			}
+
+			return scene;
 		}
 	}
 }

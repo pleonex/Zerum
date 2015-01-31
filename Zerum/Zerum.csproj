@@ -67,13 +67,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Scene.cs" />
-    <Compile Include="Scene\Control.cs" />
+    <Compile Include="Scene\SceneControl.cs" />
     <Compile Include="Scene\ScenesManager.cs" />
-    <Compile Include="Scene\Label.cs" />
+    <Compile Include="Scene\SceneLabel.cs" />
     <Compile Include="Controls\NftrLabel.cs" />
     <Compile Include="Controls\NftrLabel.Designer.cs">
       <DependentUpon>NftrLabel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScenePanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

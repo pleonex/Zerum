@@ -21,7 +21,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Zerum
+namespace Zerum.View
 {
 	public class Scene
 	{
@@ -34,7 +34,7 @@ namespace Zerum
 			set;
 		}
 
-		public List<Control> Controls {
+		public List<SceneControl> Controls {
 			get;
 			set;
 		}
