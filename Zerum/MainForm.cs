@@ -34,14 +34,7 @@ namespace Zerum
 	{
 		public MainForm()
 		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
 			InitializeComponent();
-			
-			var label = new NftrLabel("font_b11.NFTR");
-			label.Text = "Hello World";
-			this.Controls.Add(label);
 		}
 	}
 }
