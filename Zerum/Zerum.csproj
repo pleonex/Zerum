@@ -60,6 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\GameControl.cs" />
+    <Compile Include="Controls\ImageControl.cs" />
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -72,9 +74,6 @@
     <Compile Include="Scene\ScenesManager.cs" />
     <Compile Include="Scene\SceneLabel.cs" />
     <Compile Include="Controls\NftrLabel.cs" />
-    <Compile Include="Controls\NftrLabel.Designer.cs">
-      <DependentUpon>NftrLabel.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\ScenePanel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -20,40 +20,37 @@
 // <date>30/01/2015</date>
 //-----------------------------------------------------------------------
 using System;
-using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using Nftr;
 using Nftr.Structure;
+using Zerum.View;
 
 namespace Zerum.Controls
 {
     /// <summary>
     /// Description of NftrLabel.
     /// </summary>
-    public partial class NftrLabel : UserControl
+    public partial class NftrLabel : GameControl
     {
         readonly NftrFont font;
         readonly int lineGap;
         
-        public NftrLabel(string fontpath)
-        {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
-            InitializeComponent();
-            
-            font = new NftrFont(fontpath);
+        public NftrLabel(SceneLabel info)
+            : base(info)
+        {            
+            font = new NftrFont(info.Fontpath);
 			lineGap = font.Blocks.GetByType<Finf>(0).LineGap;
             
-            Text = string.Empty;
-			AutoSize = false;
+            Text = info.DefaultText;
         }
         
-        protected override void OnPaint(PaintEventArgs e)
+        public string Text {
+            get;
+            set;
+        }
+        
+        protected override void PaintComponent(Graphics graphic)
         {
-            base.OnPaint(e);
-            
             int x = 0, y = 0;
             foreach (char ch in Text) {
                 if (ch == '\n') {
@@ -73,7 +70,7 @@ namespace Zerum.Controls
                 }
                 
                 x += glyph.Width.BearingX;
-                e.Graphics.DrawImageUnscaled(glyph.ToImage(1, true), x, y);
+                graphic.DrawImageUnscaled(glyph.ToImage(1, true), x, y);
                 x += glyph.Width.Advance;
             }
         }

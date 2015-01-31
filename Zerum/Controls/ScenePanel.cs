@@ -30,7 +30,8 @@ namespace Zerum.Controls
 	public class ScenePanel : GroupBox
 	{
 		List<TextTuple> textControls;
-
+		List<GameControl> controls;
+		
 		public ScenePanel(Scene scene)
 		{
 		    AutoSize = true;
@@ -40,41 +41,30 @@ namespace Zerum.Controls
 		void CreateComponents(Scene scene)
 		{
 			Text = scene.Name;
+			controls = new List<GameControl>();
 			foreach (var control in scene.Controls)
-				AddComponent(control);
+			    controls.Add(AddComponent(control));
 		}
 
-		void AddComponent(SceneControl control)
+		GameControl AddComponent(SceneControl control)
 		{
 			if (control is SceneLabel)
-				AddLabel((SceneLabel)control);
+			    return new NftrLabel((SceneLabel)control);
 			else if (control is SceneImage)
-			    AddImage((SceneImage)control);
-		}
-
-		void AddLabel(SceneLabel labelInfo)
-		{
-			var label = new NftrLabel(labelInfo.Fontpath);
-			SetDefaultInfo(label, labelInfo);
-			label.Text = labelInfo.DefaultText;
-			Controls.Add(label);
+			    return new ImageControl((SceneImage)control);
+			
+			return null;
 		}
 		
-		void AddImage(SceneImage imgInfo)
-		{
-		    var picBox = new PictureBox();
-		    SetDefaultInfo(picBox, imgInfo);
-		    picBox.SizeMode = PictureBoxSizeMode.Normal;
-		    picBox.Image = Image.FromFile(imgInfo.ImagePath);
-		    Controls.Add(picBox);
-		}
-		
-		void SetDefaultInfo(Control control, SceneControl info)
-		{
-		    control.Width    = info.Width;
-		    control.Height   = info.Height;
-		    control.Location = new Point(info.LocationX, info.LocationY);
-		}
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            
+            foreach (var control in controls) {
+                if (control != null)
+                    control.Paint(e.Graphics);
+            }
+        }
 	}
 }
 
