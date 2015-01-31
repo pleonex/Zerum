@@ -1,5 +1,5 @@
 ﻿//
-//  MainForm.cs
+//  SceneElement.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -19,23 +19,39 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using Zerum.Controls;
-using Zerum.Info;
 
-namespace Zerum
+namespace Zerum.Info
 {
-	/// <summary>
-	/// Description of MainForm.
-	/// </summary>
-	public partial class MainForm : Form
+	public class SceneElement
 	{
-		public MainForm()
+		public SceneElement()
 		{
-			InitializeComponent();
-			Controls.Add(new SceneView(ScenesManager.Instance.GetScene("Item description")));
+		}
+
+		public string Name {
+			get;
+			set;
+		}
+
+		public int LocationX {
+			get;
+			set;
+		}
+
+		public int LocationY {
+			get;
+			set;
+		}
+
+		public int Width {
+			get;
+			set;
+		}
+
+		public int Height {
+			get;
+			set;
 		}
 	}
 }
+

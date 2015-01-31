@@ -1,41 +1,37 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="NftrLabel.cs" company="none">
-// Copyright (C) 2015
+﻿//
+//  NftrLabel.cs
 //
-//   This program is free software: you can redistribute it and/or modify
-//   it under the terms of the GNU General Public License as published by 
-//   the Free Software Foundation, either version 3 of the License, or
-//   (at your option) any later version.
+//  Author:
+//       Benito Palacios Sánchez <benito356@gmail.com>
 //
-//   This program is distributed in the hope that it will be useful, 
-//   but WITHOUT ANY WARRANTY; without even the implied warranty of
-//   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//   GNU General Public License for more details. 
+//  Copyright (c) 2015 Benito Palacios Sánchez
 //
-//   You should have received a copy of the GNU General Public License
-//   along with this program.  If not, see "http://www.gnu.org/licenses/". 
-// </copyright>
-// <author>pleonex</author>
-// <email>benito356@gmail.com</email>
-// <date>30/01/2015</date>
-//-----------------------------------------------------------------------
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Drawing;
 using Nftr;
 using Nftr.Structure;
-using Zerum.View;
+using Zerum.Info;
 
 namespace Zerum.Controls
 {
-    /// <summary>
-    /// Description of NftrLabel.
-    /// </summary>
-    public partial class NftrLabel : GameControl
+    public partial class NftrLabel : SceneControl
     {
         readonly NftrFont font;
         readonly int lineGap;
         
-        public NftrLabel(SceneLabel info)
+        public NftrLabel(LabelInfo info)
             : base(info)
         {            
             font = new NftrFont(info.Fontpath);

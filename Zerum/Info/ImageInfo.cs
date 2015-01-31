@@ -1,5 +1,5 @@
 ﻿//
-//  Label.cs
+//  ImageInfo.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -20,23 +20,17 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Zerum.View
+namespace Zerum.Info
 {
-	public class SceneLabel : SceneControl
-	{
-		public SceneLabel()
-		{
-		}
-
-		public string Fontpath {
-			get;
-			set;
-		}
-
-		public string DefaultText {
-			get;
-			set;
-		}
-	}
+    public class ImageInfo : SceneElement
+    {
+        public ImageInfo()
+        {
+        }
+        
+        public string ImagePath {
+            get;
+            set;
+        }
+    }
 }
-

@@ -1,5 +1,5 @@
 ﻿//
-//  MainForm.cs
+//  ExternalImage.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -19,23 +19,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
-using Zerum.Controls;
 using Zerum.Info;
 
-namespace Zerum
+namespace Zerum.Controls
 {
-	/// <summary>
-	/// Description of MainForm.
-	/// </summary>
-	public partial class MainForm : Form
-	{
-		public MainForm()
-		{
-			InitializeComponent();
-			Controls.Add(new SceneView(ScenesManager.Instance.GetScene("Item description")));
-		}
-	}
+    public class ExternalImage : SceneControl
+    {
+        Image img;
+        
+        public ExternalImage(ImageInfo info)
+            : base(info)
+        {
+            img = Image.FromFile(info.ImagePath);
+        }
+        
+        protected override void PaintComponent(Graphics graphic)
+        {
+            graphic.DrawImageUnscaled(img, 0, 0);
+        }
+    }
 }

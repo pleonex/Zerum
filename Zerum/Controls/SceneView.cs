@@ -1,5 +1,5 @@
 ﻿//
-//  ScenePanel.cs
+//  SceneView.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -21,37 +21,36 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TextTuple = System.Tuple<System.Windows.Forms.TextBox, Zerum.Controls.NftrLabel>;
 using System.Drawing;
-using Zerum.View;
+using Zerum.Info;
+using TextTuple = System.Tuple<System.Windows.Forms.TextBox, Zerum.Controls.NftrLabel>;
 
 namespace Zerum.Controls
 {
-	public class ScenePanel : GroupBox
+	public class SceneView : GroupBox
 	{
 		List<TextTuple> textControls;
-		List<GameControl> controls;
+		List<SceneControl> controls;
 		
-		public ScenePanel(Scene scene)
+		public SceneView(SceneInfo scene)
 		{
-		    AutoSize = true;
 			CreateComponents(scene);
 		}
 
-		void CreateComponents(Scene scene)
+		void CreateComponents(SceneInfo scene)
 		{
 			Text = scene.Name;
-			controls = new List<GameControl>();
+			controls = new List<SceneControl>();
 			foreach (var control in scene.Controls)
 			    controls.Add(AddComponent(control));
 		}
 
-		GameControl AddComponent(SceneControl control)
+		SceneControl AddComponent(SceneElement control)
 		{
-			if (control is SceneLabel)
-			    return new NftrLabel((SceneLabel)control);
-			else if (control is SceneImage)
-			    return new ImageControl((SceneImage)control);
+			if (control is LabelInfo)
+			    return new NftrLabel((LabelInfo)control);
+			else if (control is ImageInfo)
+			    return new ExternalImage((ImageInfo)control);
 			
 			return null;
 		}

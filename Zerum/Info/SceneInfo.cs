@@ -1,5 +1,5 @@
 ﻿//
-//  Scene.cs
+//  SceneInfo.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -21,11 +21,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Zerum.View
+namespace Zerum.Info
 {
-	public class Scene
+	public class SceneInfo
 	{
-		public Scene()
+		public SceneInfo()
 		{
 		}
 
@@ -34,7 +34,7 @@ namespace Zerum.View
 			set;
 		}
 
-		public List<SceneControl> Controls {
+		public List<SceneElement> Controls {
 			get;
 			set;
 		}

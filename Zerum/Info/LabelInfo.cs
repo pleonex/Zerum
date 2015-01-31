@@ -1,5 +1,5 @@
 ﻿//
-//  Control.cs
+//  LabelInfo.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -20,35 +20,20 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 
-namespace Zerum.View
+namespace Zerum.Info
 {
-	public class SceneControl
+	public class LabelInfo : SceneElement
 	{
-		public SceneControl()
+		public LabelInfo()
 		{
 		}
 
-		public string Name {
+		public string Fontpath {
 			get;
 			set;
 		}
 
-		public int LocationX {
-			get;
-			set;
-		}
-
-		public int LocationY {
-			get;
-			set;
-		}
-
-		public int Width {
-			get;
-			set;
-		}
-
-		public int Height {
+		public string DefaultText {
 			get;
 			set;
 		}
