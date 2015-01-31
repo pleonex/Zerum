@@ -38,15 +38,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="YAXLib">
       <HintPath>..\packages\YAXLib.2.13\lib\YAXLib.dll</HintPath>
     </Reference>
@@ -80,5 +88,11 @@
   <ItemGroup>
     <Folder Include="Scene\" />
     <Folder Include="Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NerdFontTerminatoR\NerdFontTerminatoR\NerdFontTerminatoR.csproj">
+      <Project>{67AB462C-59F1-48DB-A884-A022D9AF809B}</Project>
+      <Name>NerdFontTerminatoR</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
