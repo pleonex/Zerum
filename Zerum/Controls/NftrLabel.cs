@@ -34,7 +34,7 @@ namespace Zerum.Controls
     public partial class NftrLabel : UserControl
     {
         readonly NftrFont font;
-        readonly int glyphHeight;
+        readonly int lineGap;
         
         public NftrLabel(string fontpath)
         {
@@ -44,9 +44,10 @@ namespace Zerum.Controls
             InitializeComponent();
             
             font = new NftrFont(fontpath);
-			glyphHeight = font.Blocks.GetByType<Finf>(0).GlyphHeight;
+			lineGap = font.Blocks.GetByType<Finf>(0).LineGap;
             
             Text = string.Empty;
+			AutoSize = false;
         }
         
         protected override void OnPaint(PaintEventArgs e)
@@ -57,7 +58,7 @@ namespace Zerum.Controls
             foreach (char ch in Text) {
                 if (ch == '\n') {
                     x = 0;
-                    y += glyphHeight;
+                    y += lineGap;
                     continue;
                 }
                 
@@ -68,8 +69,7 @@ namespace Zerum.Controls
                 
                 if (x + glyph.Width.Width > Width) {
                     x = 0;
-                    y += glyphHeight;
-                    continue;
+                    y += lineGap;
                 }
                 
                 x += glyph.Width.BearingX;
