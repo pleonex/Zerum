@@ -33,8 +33,8 @@ namespace Zerum.Controls
         
         public NftrLabel(LabelInfo info)
             : base(info)
-        {            
-            font = new NftrFont(info.Fontpath);
+        {
+			font = new NftrFont(info.Fontpath.FixPath());
 			lineGap = font.Blocks.GetByType<Finf>(0).LineGap;
             
             Text = info.DefaultText;

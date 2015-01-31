@@ -77,6 +77,9 @@ namespace Zerum.Info
 
 		private SceneInfo ReadScene(XElement sceneXml)
 		{
+			string workdir = sceneXml.Element("WorkDir").Value;
+			Environment.CurrentDirectory = workdir;
+
 			SceneInfo scene = new SceneInfo();
 			scene.Name = sceneXml.Element("Name").Value;
 			scene.Width  = Convert.ToInt32(sceneXml.Element("Width").Value);

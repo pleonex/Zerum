@@ -72,6 +72,7 @@
     <Compile Include="Info\LabelInfo.cs" />
     <Compile Include="Controls\NftrLabel.cs" />
     <Compile Include="Controls\SceneView.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

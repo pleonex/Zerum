@@ -1,5 +1,5 @@
 ﻿//
-//  ExternalImage.cs
+//  StringExtensions.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -19,24 +19,15 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using System.Drawing;
-using Zerum.Info;
 
-namespace Zerum.Controls
+namespace Zerum
 {
-    public class ExternalImage : SceneControl
-    {
-        Image img;
-        
-        public ExternalImage(ImageInfo info)
-            : base(info)
-        {
-			img = Image.FromFile(info.ImagePath.FixPath());
-        }
-        
-        protected override void PaintComponent(Graphics graphic)
-        {
-            graphic.DrawImageUnscaled(img, 0, 0);
-        }
-    }
+	public static class StringExtensions
+	{
+		public static string FixPath(this string path)
+		{
+			return path.Replace('/', System.IO.Path.DirectorySeparatorChar);
+		}
+	}
 }
+
