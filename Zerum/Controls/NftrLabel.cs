@@ -35,7 +35,7 @@ namespace Zerum.Controls
             : base(info)
         {
 			font = new NftrFont(info.Fontpath.FixPath());
-			lineGap = font.Blocks.GetByType<Finf>(0).LineGap;
+			lineGap = font.Blocks.GetByType<Finf>(0).LineGap + 5;
             
             Text = info.DefaultText;
         }
@@ -67,7 +67,7 @@ namespace Zerum.Controls
                 
                 x += glyph.Width.BearingX;
                 graphic.DrawImageUnscaled(glyph.ToImage(1, true), x, y);
-                x += glyph.Width.Advance;
+				x += glyph.Width.Advance - glyph.Width.BearingX;
             }
         }
     }
