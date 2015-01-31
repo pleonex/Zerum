@@ -23,36 +23,77 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Drawing;
 using Zerum.Info;
-using TextTuple = System.Tuple<System.Windows.Forms.TextBox, Zerum.Controls.NftrLabel>;
 
 namespace Zerum.Controls
 {
 	public class SceneView : GroupBox
 	{
-		List<TextTuple> textControls;
+		Dictionary<TextBox, NftrLabel> textControls;
 		List<SceneControl> controls;
+		GroupBox textEntryBox;
+		SceneInfo scene;
 		
 		public SceneView(SceneInfo scene)
 		{
-			CreateComponents(scene);
+			this.scene = scene;
+			CreateComponents();
 		}
 
-		void CreateComponents(SceneInfo scene)
+		void CreateComponents()
 		{
-			Text = scene.Name;
+			textEntryBox = new GroupBox();
+			textEntryBox.Text = "Text";
+			textEntryBox.Width  = 100;
+			textEntryBox.Height = scene.Height;
+			textEntryBox.Location = new Point(scene.Width, 0);
+			Controls.Add(textEntryBox);
+
+			Text   = scene.Name;
+			Width  = scene.Width + textEntryBox.Width;
+			Height = scene.Height;
+
 			controls = new List<SceneControl>();
+			textControls = new Dictionary<TextBox, NftrLabel>();
 			foreach (var control in scene.Controls)
 			    controls.Add(AddComponent(control));
 		}
 
 		SceneControl AddComponent(SceneElement control)
 		{
-			if (control is LabelInfo)
-			    return new NftrLabel((LabelInfo)control);
-			else if (control is ImageInfo)
+			if (control is LabelInfo) {
+				var labelInfo = (LabelInfo)control;
+				if (labelInfo.IsEditable)
+					return AddTextEntry(labelInfo);
+				else
+					return new NftrLabel(labelInfo);
+			} else if (control is ImageInfo)
 			    return new ExternalImage((ImageInfo)control);
 			
 			return null;
+		}
+
+		NftrLabel AddTextEntry(LabelInfo labelInfo)
+		{
+			var label = new NftrLabel(labelInfo);
+
+			int yBase = textControls.Count * 40;
+
+			var textBoxLabel = new Label();
+			textBoxLabel.Text = labelInfo.Name;
+			textBoxLabel.Location = new Point(0, yBase);
+
+			var textBox = new TextBox();
+			textBox.Text = label.Text;
+			textBox.Multiline = true;
+			textBox.Width  = 80;
+			textBox.Height = 30;
+			textBox.Location = new Point(0, yBase + 10);
+			textBox.TextChanged += HandleTextChanged;
+
+			textEntryBox.Controls.Add(textBoxLabel);
+			textEntryBox.Controls.Add(textBox);
+			textControls.Add(textBox, label);
+			return label;
 		}
 		
         protected override void OnPaint(PaintEventArgs e)
@@ -64,6 +105,14 @@ namespace Zerum.Controls
                     control.Paint(e.Graphics);
             }
         }
+
+		void HandleTextChanged(object sender, EventArgs e)
+		{
+			var textBox = (TextBox)sender;
+			var label = textControls[textBox];
+			label.Text = textBox.Text;
+			Invalidate();
+		}
 	}
 }
 

@@ -34,6 +34,16 @@ namespace Zerum.Info
 			set;
 		}
 
+		public int Width {
+			get;
+			set;
+		}
+
+		public int Height {
+			get;
+			set;
+		}
+
 		public List<SceneElement> Controls {
 			get;
 			set;

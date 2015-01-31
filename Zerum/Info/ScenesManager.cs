@@ -79,6 +79,8 @@ namespace Zerum.Info
 		{
 			SceneInfo scene = new SceneInfo();
 			scene.Name = sceneXml.Element("Name").Value;
+			scene.Width  = Convert.ToInt32(sceneXml.Element("Width").Value);
+			scene.Height = Convert.ToInt32(sceneXml.Element("Height").Value);
 			scene.Controls = new List<SceneElement>();
 
 			foreach (var controlXml in sceneXml.Element("Controls").Elements()) {

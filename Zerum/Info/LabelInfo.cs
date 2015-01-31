@@ -37,6 +37,11 @@ namespace Zerum.Info
 			get;
 			set;
 		}
+
+		public bool IsEditable {
+			get;
+			set;
+		}
 	}
 }
 
