@@ -35,16 +35,57 @@ namespace Zerum
 		ScenesManager manager;
 		SceneView sceneView;
 
+		Label sceneListLabel;
+		ListBox sceneList;
+
 		public MainForm()
 		{
 			this.AutoScaleMode = AutoScaleMode.Font;
 			this.AutoSize = true;
 			this.Text = "Zerum ~~ by pleonex ~~";
 
-			manager   = ScenesManager.Instance;
-			sceneView = new SceneView(manager.GetScene("Item description"));
+			sceneListLabel = new Label();
+			sceneListLabel.AutoSize = true;
+			sceneListLabel.Text = "Scenes:";
+			Controls.Add(sceneListLabel);
+
+			sceneList = new ListBox();
+			sceneList.Width = 200;
+			manager = ScenesManager.Instance;
+			foreach (var name in manager.GetScenesName())
+				sceneList.Items.Add(name);
+
+			Controls.Add(sceneList);
+			sceneList.SelectedIndexChanged += HandleSelectedIndexChanged;
+			sceneList.SelectedIndex = 0;
+		}
+
+		void HandleSelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (sceneView != null) {
+				Controls.Remove(sceneView);
+				sceneView.Dispose();
+			}
+
+			UpdateSceneView();
+		}
+
+		void UpdateSceneView()
+		{
+			sceneView = new SceneView(manager.GetScene((string)sceneList.SelectedItem));
 			sceneView.Location = new Point(5, 0);
 			Controls.Add(sceneView);
+
+			UpdateExternalControlsLocation();
+		}
+
+		void UpdateExternalControlsLocation()
+		{
+			int xBase = sceneView.Location.X + sceneView.Width + 10;
+			sceneListLabel.Location = new Point(xBase, 10);
+
+			sceneList.Location = new Point(xBase, 25);
+			sceneList.Height = sceneView.Height - 20;
 		}
 	}
 }

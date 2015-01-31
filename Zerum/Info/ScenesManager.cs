@@ -45,11 +45,9 @@ namespace Zerum.Info
 			get { return instance; }
 		}
 
-		public string[] GetScenesName()
+		public IEnumerable<string> GetScenesName()
 		{
-			var names = new string[scenes.Count];
-			scenes.Keys.CopyTo(names, 0);
-			return names;
+			return scenes.Keys;
 		}
 
 		public SceneInfo GetScene(string name)
