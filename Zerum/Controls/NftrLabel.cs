@@ -73,7 +73,7 @@ namespace Zerum.Controls
                 }
                 
                 x += glyph.Width.BearingX;
-                e.Graphics.DrawImageUnscaled(glyph.ToImage(1), x, y);
+                e.Graphics.DrawImageUnscaled(glyph.ToImage(1, true), x, y);
                 x += glyph.Width.Advance;
             }
         }
