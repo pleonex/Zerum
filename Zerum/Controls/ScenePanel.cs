@@ -33,6 +33,7 @@ namespace Zerum.Controls
 
 		public ScenePanel(Scene scene)
 		{
+		    AutoSize = true;
 			CreateComponents(scene);
 		}
 
@@ -47,17 +48,32 @@ namespace Zerum.Controls
 		{
 			if (control is SceneLabel)
 				AddLabel((SceneLabel)control);
+			else if (control is SceneImage)
+			    AddImage((SceneImage)control);
 		}
 
 		void AddLabel(SceneLabel labelInfo)
 		{
 			var label = new NftrLabel(labelInfo.Fontpath);
+			SetDefaultInfo(label, labelInfo);
 			label.Text = labelInfo.DefaultText;
-			label.Width  = labelInfo.Width;
-			label.Height = labelInfo.Height;
-			label.Location = new Point(labelInfo.LocationX, labelInfo.LocationY);
-
-			this.Controls.Add(label);
+			Controls.Add(label);
+		}
+		
+		void AddImage(SceneImage imgInfo)
+		{
+		    var picBox = new PictureBox();
+		    SetDefaultInfo(picBox, imgInfo);
+		    picBox.SizeMode = PictureBoxSizeMode.Normal;
+		    picBox.Image = Image.FromFile(imgInfo.ImagePath);
+		    Controls.Add(picBox);
+		}
+		
+		void SetDefaultInfo(Control control, SceneControl info)
+		{
+		    control.Width    = info.Width;
+		    control.Height   = info.Height;
+		    control.Location = new Point(info.LocationX, info.LocationY);
 		}
 	}
 }

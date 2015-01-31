@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\SceneImage.cs" />
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\SceneControl.cs" />
     <Compile Include="Scene\ScenesManager.cs" />
