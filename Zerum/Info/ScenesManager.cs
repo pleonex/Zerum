@@ -80,6 +80,9 @@ namespace Zerum.Info
 			string workdir = sceneXml.Element("WorkDir").Value;
 			Environment.CurrentDirectory = workdir;
 
+			string configFile = sceneXml.Element("ConfigFile").Value;
+			Libgame.Configuration.Initialize(XDocument.Load(configFile));
+
 			SceneInfo scene = new SceneInfo();
 			scene.Name = sceneXml.Element("Name").Value;
 			scene.Width  = Convert.ToInt32(sceneXml.Element("Width").Value);

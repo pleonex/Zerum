@@ -20,6 +20,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Drawing;
+using Libgame;
 using Nftr;
 using Nftr.Structure;
 using Zerum.Info;
@@ -30,7 +31,8 @@ namespace Zerum.Controls
     {
         readonly NftrFont font;
         readonly int lineGap;
-        
+		string text;
+
         public NftrLabel(LabelInfo info)
             : base(info)
         {
@@ -41,8 +43,8 @@ namespace Zerum.Controls
         }
         
         public string Text {
-            get;
-            set;
+			get { return text; }
+			set { text = value.ApplyTable("replace", true); }
         }
         
         protected override void PaintComponent(Graphics graphic)
