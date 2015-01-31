@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Scene.cs" />
+    <Compile Include="Scene\Control.cs" />
+    <Compile Include="Scene\ScenesManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -83,4 +86,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Scene\" />
+  </ItemGroup>
 </Project>
