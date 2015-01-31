@@ -69,6 +69,7 @@
     <Compile Include="Scene\Scene.cs" />
     <Compile Include="Scene\Control.cs" />
     <Compile Include="Scene\ScenesManager.cs" />
+    <Compile Include="Scene\Label.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

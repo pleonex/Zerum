@@ -1,5 +1,5 @@
 ﻿//
-//  Control.cs
+//  Label.cs
 //
 //  Author:
 //       Benito Palacios Sánchez <benito356@gmail.com>
@@ -22,33 +22,18 @@ using System;
 
 namespace Zerum
 {
-	public class Control
+	public class Label : Control
 	{
-		public Control()
+		public Label()
 		{
 		}
 
-		public string Name {
+		public string Fontpath {
 			get;
 			set;
 		}
 
-		public int LocationX {
-			get;
-			set;
-		}
-
-		public int LocationY {
-			get;
-			set;
-		}
-
-		public int Width {
-			get;
-			set;
-		}
-
-		public int Height {
+		public string DefaultText {
 			get;
 			set;
 		}
