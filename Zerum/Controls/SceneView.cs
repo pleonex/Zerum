@@ -41,21 +41,25 @@ namespace Zerum.Controls
 
 		void CreateComponents()
 		{
+			this.SuspendLayout();
+
 			textEntryBox = new GroupBox();
 			textEntryBox.Text = "Text";
-			textEntryBox.Width  = 100;
+			textEntryBox.Width  = 200;
 			textEntryBox.Height = scene.Height;
-			textEntryBox.Location = new Point(scene.Width, 0);
+			textEntryBox.Location = new Point(scene.Width + 10, 15);
 			Controls.Add(textEntryBox);
 
 			Text   = scene.Name;
-			Width  = scene.Width + textEntryBox.Width;
-			Height = scene.Height;
+			Width  = textEntryBox.Location.X + textEntryBox.Width + 5;
+			Height = scene.Height + 20;
 
 			controls = new List<SceneControl>();
 			textControls = new Dictionary<TextBox, NftrLabel>();
 			foreach (var control in scene.Controls)
 			    controls.Add(AddComponent(control));
+
+			this.ResumeLayout(false);
 		}
 
 		SceneControl AddComponent(SceneElement control)
@@ -76,18 +80,20 @@ namespace Zerum.Controls
 		{
 			var label = new NftrLabel(labelInfo);
 
-			int yBase = textControls.Count * 40;
+			int yBase = textControls.Count * 40 + 15;
 
 			var textBoxLabel = new Label();
+			textBoxLabel.AutoSize = true;
 			textBoxLabel.Text = labelInfo.Name;
-			textBoxLabel.Location = new Point(0, yBase);
+			textBoxLabel.Location = new Point(5, yBase);
 
 			var textBox = new TextBox();
+			textBox.ScrollBars = ScrollBars.Vertical;
 			textBox.Text = label.Text;
 			textBox.Multiline = true;
-			textBox.Width  = 80;
-			textBox.Height = 30;
-			textBox.Location = new Point(0, yBase + 10);
+			textBox.Width  = textEntryBox.Width - 10;
+			textBox.Height = 50;
+			textBox.Location = new Point(5, yBase + 15);
 			textBox.TextChanged += HandleTextChanged;
 
 			textEntryBox.Controls.Add(textBoxLabel);
@@ -99,7 +105,8 @@ namespace Zerum.Controls
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            
+			e.Graphics.TranslateTransform(5, 15);
+
             foreach (var control in controls) {
                 if (control != null)
                     control.Paint(e.Graphics);
