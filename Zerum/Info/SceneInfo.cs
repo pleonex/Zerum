@@ -29,6 +29,16 @@ namespace Zerum.Info
 		{
 		}
 
+		public string WorkDir {
+			get;
+			set;
+		}
+
+		public string ConfigFile {
+			get;
+			set;
+		}
+
 		public string Name {
 			get;
 			set;

@@ -50,52 +50,31 @@ namespace Zerum.Info
 			return scenes.Keys;
 		}
 
-		public SceneInfo GetScene(string name)
+		public SceneInfo LoadScene(string name)
 		{
 			if (!scenes.ContainsKey(name))
 				return null;
+
+			Environment.CurrentDirectory = scenes[name].WorkDir;
+			Libgame.Configuration.Initialize(XDocument.Load(scenes[name].ConfigFile));
 
 			return scenes[name];
 		}
 
 		public SceneInfo this[string name] {
-			get { return GetScene(name); }
+			get { return LoadScene(name); }
 		}
 
 		private void Read()
 		{
+			var deserializer = new YAXSerializer(typeof(SceneInfo));
 			var document = XDocument.Load(Filepath);
 			scenes = new Dictionary<string, SceneInfo>();
 
 			foreach (var sceneXml in document.Root.Elements()) {
-				var scene = ReadScene(sceneXml);
+				var scene = (SceneInfo)deserializer.Deserialize(sceneXml);
 				scenes.Add(scene.Name, scene);
 			}
-		}
-
-		private SceneInfo ReadScene(XElement sceneXml)
-		{
-			string workdir = sceneXml.Element("WorkDir").Value;
-			Environment.CurrentDirectory = workdir;
-
-			string configFile = sceneXml.Element("ConfigFile").Value;
-			Libgame.Configuration.Initialize(XDocument.Load(configFile));
-
-			SceneInfo scene = new SceneInfo();
-			scene.Name = sceneXml.Element("Name").Value;
-			scene.Width  = Convert.ToInt32(sceneXml.Element("Width").Value);
-			scene.Height = Convert.ToInt32(sceneXml.Element("Height").Value);
-			scene.Controls = new List<SceneElement>();
-
-			foreach (var controlXml in sceneXml.Element("Controls").Elements()) {
-				var controlType = Type.GetType("Zerum.Info." + controlXml.Name.LocalName);
-				var deserializer = new YAXSerializer(controlType);
-
-				var control = (SceneElement)deserializer.Deserialize(controlXml);
-				scene.Controls.Add(control);
-			}
-
-			return scene;
 		}
 	}
 }

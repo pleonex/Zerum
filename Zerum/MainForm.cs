@@ -72,7 +72,7 @@ namespace Zerum
 
 		void UpdateSceneView()
 		{
-			sceneView = new SceneView(manager.GetScene((string)sceneList.SelectedItem));
+			sceneView = new SceneView(manager.LoadScene((string)sceneList.SelectedItem));
 			sceneView.Location = new Point(5, 0);
 			Controls.Add(sceneView);
 
