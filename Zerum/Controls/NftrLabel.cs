@@ -62,7 +62,7 @@ namespace Zerum.Controls
                 
                 var glyph = font.SearchGlyphByChar(ch);
                 
-                if (x + glyph.Width.Width > Width) {
+				if (x + glyph.Width.Advance >= Width) {
                     x = 0;
                     y += lineGap;
                 }
