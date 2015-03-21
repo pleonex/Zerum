@@ -31,13 +31,14 @@ namespace Zerum.Info
 	{
 		static readonly ScenesManager instance = new ScenesManager();
 		readonly string Filename = "scenes.xml";
-		readonly string Filepath;
+		readonly string executablePath;
+		readonly string filepath;
 		Dictionary<string, SceneInfo> scenes;
 
 		private ScenesManager()
 		{
-			string execPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-			Filepath = Path.Combine(execPath, Filename);
+			executablePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+			filepath = Path.Combine(executablePath, Filename);
 			Read();
 		}
 
@@ -55,6 +56,7 @@ namespace Zerum.Info
 			if (!scenes.ContainsKey(name))
 				return null;
 
+			Environment.CurrentDirectory = executablePath;
 			Environment.CurrentDirectory = scenes[name].WorkDir;
 			Libgame.Configuration.Initialize(XDocument.Load(scenes[name].ConfigFile));
 
@@ -68,7 +70,7 @@ namespace Zerum.Info
 		private void Read()
 		{
 			var deserializer = new YAXSerializer(typeof(SceneInfo));
-			var document = XDocument.Load(Filepath);
+			var document = XDocument.Load(filepath);
 			scenes = new Dictionary<string, SceneInfo>();
 
 			foreach (var sceneXml in document.Root.Elements()) {
