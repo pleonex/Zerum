@@ -37,7 +37,9 @@ namespace Zerum.Controls
             : base(info)
         {
 			font = new NftrFont(info.Fontpath.FixPath());
-			lineGap = font.Blocks.GetByType<Finf>(0).LineGap + 5;
+			lineGap = font.Blocks.GetByType<Cglp>(0).BoxHeight;
+			lineGap += 2;	// Constant present (at least in Ninokuni game).
+			lineGap += 3;	// Furigana font box height (Hard coded for Spanish trans).
             
             Text = info.DefaultText;
         }
