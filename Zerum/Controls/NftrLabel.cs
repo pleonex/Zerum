@@ -30,6 +30,7 @@ namespace Zerum.Controls
     public partial class NftrLabel : SceneControl
     {
         readonly NftrFont font;
+		readonly Glyph defaultChar;
         readonly int lineGap;
 		string text;
 
@@ -40,7 +41,8 @@ namespace Zerum.Controls
 			lineGap = font.Blocks.GetByType<Cglp>(0).BoxHeight;
 			lineGap += 2;	// Constant present (at least in Ninokuni game).
 			lineGap += 3;	// Furigana font box height (Hard coded for Spanish trans).
-            
+			defaultChar = font.ErrorChar;
+
             Text = info.DefaultText;
         }
         
@@ -65,7 +67,9 @@ namespace Zerum.Controls
                     continue;
                 
                 var glyph = font.SearchGlyphByChar(ch);
-                
+				if (glyph.Image == null)
+					glyph = defaultChar;
+
 				if (x + glyph.Width.Advance >= Width) {
                     x = 0;
                     y += lineGap;
