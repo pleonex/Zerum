@@ -33,59 +33,70 @@ namespace Zerum
 	public partial class MainForm : Form
 	{
 		ScenesManager manager;
-		SceneView sceneView;
 
-		Label sceneListLabel;
+		TableLayoutPanel panel;
 		ListBox sceneList;
 
 		public MainForm()
 		{
 			this.AutoScaleMode = AutoScaleMode.Font;
 			this.AutoSize = true;
+			this.Size = new Size(756, 425);
 			this.Text = "Zerum ~~ by pleonex ~~";
+			CreateComponents();
 
-			sceneListLabel = new Label();
-			sceneListLabel.AutoSize = true;
-			sceneListLabel.Text = "Scenes:";
-			Controls.Add(sceneListLabel);
-
-			sceneList = new ListBox();
-			sceneList.Width = 200;
 			manager = ScenesManager.Instance;
 			foreach (var name in manager.GetScenesName())
 				sceneList.Items.Add(name);
 
-			Controls.Add(sceneList);
 			sceneList.SelectedIndexChanged += HandleSelectedIndexChanged;
 			sceneList.SelectedIndex = 0;
 		}
 
+		void CreateComponents()
+		{
+			this.SuspendLayout();
+
+			panel = new TableLayoutPanel();
+			panel.Dock = DockStyle.Fill;
+			panel.RowCount = 1;
+			panel.ColumnCount = 2;
+			panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+			panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200));
+			this.Controls.Add(panel);
+
+			// Second cell: Scene list
+			TableLayoutPanel listPanel = new TableLayoutPanel();
+			listPanel.Dock = DockStyle.Fill;
+			listPanel.ColumnCount = 1;
+			listPanel.RowCount = 2;
+			listPanel.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+			listPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+			panel.Controls.Add(listPanel, 1, 0);
+
+			Label sceneListLabel = new Label();
+			sceneListLabel.AutoSize = true;
+			sceneListLabel.Text = "Scenes:";
+			listPanel.Controls.Add(sceneListLabel, 0, 0);
+
+			sceneList = new ListBox();
+			sceneList.Dock = DockStyle.Fill;
+			sceneList.IntegralHeight = false;
+			listPanel.Controls.Add(sceneList, 0, 1);
+
+			this.ResumeLayout(false);
+		}
+
 		void HandleSelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (sceneView != null) {
-				Controls.Remove(sceneView);
-				sceneView.Dispose();
+			if (panel.Controls.ContainsKey(SceneView.ControlName)) {
+				panel.Controls[SceneView.ControlName].Dispose();
+				panel.Controls.RemoveByKey(SceneView.ControlName);
 			}
 
-			UpdateSceneView();
-		}
-
-		void UpdateSceneView()
-		{
-			sceneView = new SceneView(manager.LoadScene((string)sceneList.SelectedItem));
-			sceneView.Location = new Point(5, 0);
-			Controls.Add(sceneView);
-
-			UpdateExternalControlsLocation();
-		}
-
-		void UpdateExternalControlsLocation()
-		{
-			int xBase = sceneView.Location.X + sceneView.Width + 10;
-			sceneListLabel.Location = new Point(xBase, 10);
-
-			sceneList.Location = new Point(xBase, 25);
-			sceneList.Height = sceneView.Height - 20;
+			string sceneName = (string)sceneList.SelectedItem;
+			SceneView sceneView = new SceneView(manager.LoadScene(sceneName));
+			panel.Controls.Add(sceneView, 0, 0);
 		}
 	}
 }

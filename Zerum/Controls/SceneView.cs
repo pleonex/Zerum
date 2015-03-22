@@ -26,38 +26,47 @@ using Zerum.Info;
 
 namespace Zerum.Controls
 {
-	public class SceneView : GroupBox
+	public class SceneView : TableLayoutPanel
 	{
-		Dictionary<TextBox, NftrLabel> textControls;
-		List<SceneControl> controls;
-		GroupBox textEntryBox;
 		SceneInfo scene;
-		
+
+		Panel scenePanel;
+		List<SceneControl> controls;
+		Dictionary<TextBox, NftrLabel> textControls;
+
 		public SceneView(SceneInfo scene)
 		{
 			this.scene = scene;
 			CreateComponents();
 		}
 
+		public static string ControlName {
+			get { return "ScenePanel"; }
+		}
+
 		void CreateComponents()
 		{
 			this.SuspendLayout();
 
-			textEntryBox = new GroupBox();
-			textEntryBox.Text = "Text";
-			textEntryBox.Width  = 200;
-			textEntryBox.Height = scene.Height;
-			textEntryBox.Location = new Point(scene.Width + 10, 15);
-			Controls.Add(textEntryBox);
+			// Create tablelayout
+			this.Name = SceneView.ControlName;
+			this.Dock = DockStyle.Fill;
+			this.RowCount = 1;
+			this.ColumnCount = 2;
+			this.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+			this.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
 
-			Text   = scene.Name;
-			Width  = textEntryBox.Location.X + textEntryBox.Width + 5;
-			Height = scene.Height + 20;
+			// Panel for SceneView
+			scenePanel = new Panel();
+			scenePanel.Size = new Size(scene.Width, scene.Height);
+			scenePanel.Paint += OnScenePaint;
+			this.Controls.Add(scenePanel, 0, 0);
 
+			// Create scene controls
 			controls = new List<SceneControl>();
 			textControls = new Dictionary<TextBox, NftrLabel>();
 			foreach (var control in scene.Controls)
-			    controls.Add(AddComponent(control));
+				controls.Add(AddComponent(control));
 
 			this.ResumeLayout(false);
 		}
@@ -78,38 +87,36 @@ namespace Zerum.Controls
 
 		NftrLabel AddTextEntry(LabelInfo labelInfo)
 		{
-			var label = new NftrLabel(labelInfo);
+			// Scene panel must fill all the rows of the first column
+			this.RowCount += 2;
+			this.RowStyles.Add(new RowStyle());
+			this.RowStyles.Add(new RowStyle());
+			this.SetRowSpan(scenePanel, this.RowCount);
 
-			int yBase = textControls.Count * 40 + 15;
-
+			this.RowStyles[this.RowCount - 3] = new RowStyle(SizeType.AutoSize);
 			var textBoxLabel = new Label();
 			textBoxLabel.AutoSize = true;
 			textBoxLabel.Text = labelInfo.Name;
-			textBoxLabel.Location = new Point(5, yBase);
+			this.Controls.Add(textBoxLabel, 1, this.RowCount - 3);
 
+			this.RowStyles[this.RowCount - 2] = new RowStyle(SizeType.Absolute, 70);
 			var textBox = new TextBox();
+			textBox.Dock = DockStyle.Fill;
 			textBox.ScrollBars = ScrollBars.Vertical;
-			textBox.Text = label.Text;
 			textBox.Multiline = true;
-			textBox.Width  = textEntryBox.Width - 10;
-			textBox.Height = 50;
-			textBox.Location = new Point(5, yBase + 15);
+			textBox.Text = labelInfo.DefaultText;
 			textBox.TextChanged += HandleTextChanged;
+			this.Controls.Add(textBox, 1, this.RowCount - 2);
 
-			textEntryBox.Controls.Add(textBoxLabel);
-			textEntryBox.Controls.Add(textBox);
+			var label = new NftrLabel(labelInfo);
 			textControls.Add(textBox, label);
 			return label;
 		}
 		
-        protected override void OnPaint(PaintEventArgs e)
+        void OnScenePaint(object sender, PaintEventArgs e)
         {
-            base.OnPaint(e);
-			e.Graphics.TranslateTransform(5, 15);
-
             foreach (var control in controls) {
-                if (control != null)
-                    control.Paint(e.Graphics);
+            	control.Paint(e.Graphics);
             }
         }
 
@@ -118,7 +125,7 @@ namespace Zerum.Controls
 			var textBox = (TextBox)sender;
 			var label = textControls[textBox];
 			label.Text = textBox.Text;
-			Invalidate();
+			scenePanel.Invalidate();
 		}
 	}
 }
