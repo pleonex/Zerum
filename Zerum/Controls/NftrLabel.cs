@@ -51,8 +51,10 @@ namespace Zerum.Controls
         
         protected override void PaintComponent(Graphics graphic)
         {
+			string formattedText = Text.Replace("{!SP}", " ");
+
             int x = 0, y = 0;
-            foreach (char ch in Text) {
+			foreach (char ch in formattedText) {
                 if (ch == '\n') {
                     x = 0;
                     y += lineGap;
