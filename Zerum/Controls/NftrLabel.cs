@@ -70,7 +70,7 @@ namespace Zerum.Controls
 				if (glyph.Image == null)
 					glyph = defaultChar;
 
-				if (x + glyph.Width.Advance >= Width) {
+				if (x + glyph.Width.Advance > Width) {
                     x = 0;
                     y += lineGap;
                 }
