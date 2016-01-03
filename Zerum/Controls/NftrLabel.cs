@@ -30,20 +30,18 @@ namespace Zerum.Controls
     public partial class NftrLabel : SceneControl
     {
         readonly NftrFont font;
-		readonly Glyph defaultChar;
-        readonly int lineGap;
+        readonly int extraGap;
 		string text;
 
         public NftrLabel(LabelInfo info)
             : base(info)
         {
 			font = new NftrFont(info.Fontpath.FixPath());
-			lineGap = font.Blocks.GetByType<Cglp>(0).BoxHeight;
-			lineGap += 2;	// Constant present (at least in Ninokuni game).
-			lineGap += 3;	// Furigana font box height (Hard coded for Spanish trans).
-			defaultChar = font.ErrorChar;
+            extraGap = 2;   // Constant present (at least in Ninokuni game).
+            extraGap += 3;  // Furigana font box height (Hard coded for Spanish trans).
 
             Text = info.DefaultText;
+            Text = Text.Replace("{!SP}", " ");
         }
         
         public string Text {
@@ -53,32 +51,7 @@ namespace Zerum.Controls
         
         protected override void PaintComponent(Graphics graphic)
         {
-			string formattedText = Text.Replace("{!SP}", " ");
-
-            int x = 0, y = 0;
-			foreach (char ch in formattedText) {
-                if (ch == '\n') {
-                    x = 0;
-                    y += lineGap;
-                    continue;
-                }
-                
-                if (ch == '\r')
-                    continue;
-                
-                var glyph = font.SearchGlyphByChar(ch);
-				if (glyph.Image == null)
-					glyph = defaultChar;
-
-				if (x + glyph.Width.Advance > Width) {
-                    x = 0;
-                    y += lineGap;
-                }
-                
-                x += glyph.Width.BearingX;
-                graphic.DrawImageUnscaled(glyph.ToImage(1, true), x, y);
-				x += glyph.Width.Advance - glyph.Width.BearingX;
-            }
+            font.Painter.DrawString(Text, graphic, 0, 0, Width, extraGap);
         }
     }
 }
