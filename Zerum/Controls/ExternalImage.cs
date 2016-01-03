@@ -26,17 +26,26 @@ namespace Zerum.Controls
 {
     public class ExternalImage : SceneControl
     {
-        Image img;
-        
+        private readonly Image img;
+        private readonly int srcX;
+        private readonly int srcY;
+
         public ExternalImage(ImageInfo info)
             : base(info)
         {
-			img = Image.FromFile(info.ImagePath.FixPath());
+            img = Image.FromFile(info.ImagePath.FixPath());
+            srcX = info.SourceX;
+            srcY = info.SourceY;
         }
         
         protected override void PaintComponent(Graphics graphic)
         {
-            graphic.DrawImageUnscaled(img, 0, 0);
+            graphic.DrawImage(
+                img,
+                0,
+                0,
+                new Rectangle(srcX, srcY, this.Width, this.Height),
+                GraphicsUnit.Pixel);
         }
     }
 }

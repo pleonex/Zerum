@@ -19,6 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
+using YAXLib;
 
 namespace Zerum.Info
 {
@@ -29,6 +30,18 @@ namespace Zerum.Info
         }
         
         public string ImagePath {
+            get;
+            set;
+        }
+
+        [YAXErrorIfMissed(YAXExceptionTypes.Ignore, DefaultValue=0)]
+        public int SourceX {
+            get;
+            set;
+        }
+
+        [YAXErrorIfMissed(YAXExceptionTypes.Ignore, DefaultValue=0)]
+        public int SourceY {
             get;
             set;
         }
