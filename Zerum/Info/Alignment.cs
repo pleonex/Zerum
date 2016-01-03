@@ -1,10 +1,10 @@
 ﻿//
-//  LabelInfo.cs
+//  Alignment.cs
 //
 //  Author:
-//       Benito Palacios Sánchez <benito356@gmail.com>
+//       Benito Palacios Sánchez (aka pleonex) <benito356@gmail.com>
 //
-//  Copyright (c) 2015 Benito Palacios Sánchez
+//  Copyright (c) 2016 Benito Palacios Sánchez (c) 2015
 //
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by
@@ -19,36 +19,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
-using YAXLib;
 
 namespace Zerum.Info
 {
-	public class LabelInfo : SceneElement
-	{
-		public LabelInfo()
-		{
-		}
-
-		public string Fontpath {
-			get;
-			set;
-		}
-
-		public string DefaultText {
-			get;
-			set;
-		}
-
-		public bool IsEditable {
-			get;
-			set;
-		}
-
-        [YAXErrorIfMissed(YAXExceptionTypes.Ignore, DefaultValue=Alignment.Left)]
-        public Alignment Alignment {
-            get;
-            set;
-        }
-	}
+    public enum Alignment {
+        Left,
+        Center
+    }
 }
 

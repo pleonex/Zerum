@@ -29,9 +29,10 @@ namespace Zerum.Controls
 {
     public partial class NftrLabel : SceneControl
     {
-        readonly NftrFont font;
-        readonly int extraGap;
-		string text;
+        private readonly NftrFont font;
+        private readonly int extraGap;
+        private readonly Alignment alignment;
+		private string text;
 
         public NftrLabel(LabelInfo info)
             : base(info)
@@ -39,6 +40,7 @@ namespace Zerum.Controls
 			font = new NftrFont(info.Fontpath.FixPath());
             extraGap = 2;   // Constant present (at least in Ninokuni game).
             extraGap += 3;  // Furigana font box height (Hard coded for Spanish trans).
+            alignment = info.Alignment;
 
             Text = info.DefaultText;
             Text = Text.Replace("{!SP}", " ");
@@ -51,7 +53,11 @@ namespace Zerum.Controls
         
         protected override void PaintComponent(Graphics graphic)
         {
-            font.Painter.DrawString(Text, graphic, 0, 0, Width, extraGap);
+            int posX = 0;
+            if (alignment == Alignment.Center)
+                posX = (Width - font.Painter.GetStringLength(Text)) / 2;
+
+            font.Painter.DrawString(Text, graphic, posX, 0, Width, extraGap);
         }
     }
 }
